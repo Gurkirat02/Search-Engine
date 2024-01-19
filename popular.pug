@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1 Popular Links
+  ol(type="1")
+    each link in links
+      li #{"("+link.incoming + ") "}
+        a(href="/page/" + encodeURIComponent(link.link))= link.link

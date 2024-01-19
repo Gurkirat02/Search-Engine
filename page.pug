@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= page.title
+  p= page.content
+  h2 Links to the Page
+  ol(type="1")
+    each link in page.incomingLinks
+      li
+        a(href="/page/" + encodeURIComponent(link))= link
+
+  h2 Word Count
+  ul
+    each wordCount in page.wordCounts
+      li = wordCount.word + ": " + wordCount.frequency

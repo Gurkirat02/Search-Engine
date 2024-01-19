@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1 Personal Search Page
+  form(action="/personal", method="get")
+    label(for="q") Enter your search query:
+    input(type="text", id="q", name="q", placeholder="Search...")
+    input(type="number", id="limit", name="limit", min="1", max="50", placeholder="limit")
+    button(type="submit") Search
+    input(type="checkbox", id="boost", name="boost")
+    label(for="boost") boost
+
+  if searchResults
+    h2 Search Results
+    ul
+      each result in searchResults
+        li
+          a(href= '/personal/' + encodeURIComponent(result.link))= "Title: " + result.title
+          span= " , Url: " + result.link
+          span= " , Score: " + result.score
+          ul 
+            li= "Url: " 
+              a(href=result.link)=result.link
+            li= "Score: " + result.score
+            li= "pagerank: " + result.pagerank
+            li= "Content: " + result.content.substring(0, 200)
